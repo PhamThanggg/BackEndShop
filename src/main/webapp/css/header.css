@@ -1,0 +1,86 @@
+@charset "ISO-8859-1";
+
+#pages__header {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  padding: 25px 0;
+  justify-content: space-around;
+  align-items: center;
+  height: 96px;
+  background-color: #FFFFFF;
+
+}
+
+.page__nav {
+  display: flex;
+  width: 1000px;
+  max-width: 1000px;
+  justify-content: center;
+  align-items: center;
+}
+
+.page__nav>li>a {
+  display: block;
+  padding: 0px 20px;
+  color: #343434;
+  font-weight: 600;
+  font-size: 16px;
+
+}
+
+.page__nav>li:hover>a {
+  color: #ff871d;
+}
+
+.page__navIcon {
+  width: 210px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.page__navIcon-link {
+  display: block;
+}
+
+.page__navIcon-icon {
+  display: block;
+  font-size: 24px;
+  cursor: pointer;
+  font-weight: bold;
+  color: black;
+}
+
+
+/*hv*/
+.header__list{
+  position: relative;
+}
+
+.header__list-item1 {
+position: absolute;
+width: 180px; 
+left: -10px;
+background-color: #fff;
+box-shadow: 0 0 10px #0000004d;
+top: 26px;
+z-index: 1;
+display: none;
+}
+
+
+.header__list-item1 a{
+  color: black;
+  padding: 0px 10px;
+} 
+
+.header__list-item1 > li:hover > a{
+  padding: 5px 15px;
+}
+
+.header__list:hover .header__list-item1 {
+  display: block;
+}
