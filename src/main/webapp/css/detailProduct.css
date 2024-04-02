@@ -1,0 +1,17 @@
+@charset "ISO-8859-1";
+.icon-hover:hover {
+    border-color: #3b71ca !important;
+    background-color: white !important;
+    color: #3b71ca !important;
+  }
+  
+  .icon-hover:hover i {
+    color: #3b71ca !important;
+  }
+  
+  .hide-spin-buttons::-webkit-inner-spin-button,
+.hide-spin-buttons::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    display: none;
+}

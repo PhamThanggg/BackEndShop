@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="css/grid.css">
     <link rel="stylesheet" href="css/shop.css">
     <link rel="stylesheet" href="css/header.css">
-     <link rel="stylesheet" href="css/footerr.css">
+     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="css/themify-icons/themify-icons.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -92,7 +92,7 @@
                         				<c:forEach items="${listNewP1}" var="o">
                                         <div class="col pc-3 t-4 m-6">
                                             <div class="shop__body-product-info">
-                                                <a href="" class="shop__body-product-infoImage">
+                                                <a href="detail?pid=${o.id}" class="shop__body-product-infoImage">
                                                     <img width="100%" class="shop__body-product-info-img"
                                                         src="${o.img}"
                                                         alt="">
@@ -102,16 +102,17 @@
                                                         alt="">
                                                 </a>
 
-                                                <h4><a href="">${o.name}</a></h4>
+                                                <h4><a href="#">${o.name}</a></h4>
+                                                <span style="">Đã bán ${o.sell} sản phẩm</span>
                                                 <p>$${o.price}</p>
-                                                <ul class="shop__body-product-info-click">
+                                                <!-- <ul class="shop__body-product-info-click">
                                                     <li><a title="Add to cart" href=""><i
                                                                 class="ti-shopping-cart"></i></a>
                                                     </li>
                                                     <li><a title="View product" href=""><i class="ti-eye"></i></a></li>
                                                     <li><a title="Add to wishlist" href=""><i class="ti-heart"></i></a>
                                                     </li>
-                                                </ul>
+                                                </ul> -->
                                             </div>
                                         </div>   
                 						</c:forEach>
@@ -133,7 +134,7 @@
                                     	<c:forEach items="${listNewP2}" var="o">
                                         <div class="col pc-3 t-4 m-6">
                                             <div class="shop__body-product-info">
-                                                <a href="" class="shop__body-product-infoImage">
+                                                <a href="detail?pid=${o.id}" class="shop__body-product-infoImage">
                                                     <img width="100%" class="shop__body-product-info-img"
                                                         src="${o.img}"
                                                         alt="">
@@ -142,16 +143,17 @@
                                                         src="${o.img}"
                                                         alt="">
                                                 </a>
-                                                <h4><a href="">${o.name}</a></h4>
+                                                <h4><a href="#">${o.name}</a></h4>
+                                                 <span style="">Đã bán ${o.sell} sản phẩm</span>
                                                 <p>$${o.price}</p>
-                                                <ul class="shop__body-product-info-click">
+                                                <!-- <ul class="shop__body-product-info-click">
                                                     <li><a title="Add to cart" href=""><i
                                                                 class="ti-shopping-cart"></i></a>
                                                     </li>
                                                     <li><a title="View product" href=""><i class="ti-eye"></i></a></li>
                                                     <li><a title="Add to wishlist" href=""><i class="ti-heart"></i></a>
                                                     </li>
-                                                </ul>
+                                                </ul> -->
                                             </div>
                                         </div>
                                         </c:forEach>
@@ -175,7 +177,7 @@
                                     	<c:forEach items="${listNewP3}" var="o">
                                         <div class="col pc-3 t-4 m-6">
                                             <div class="shop__body-product-info">
-                                                <a href="" class="shop__body-product-infoImage">
+                                                <a href="detail?pid=${o.id}" class="shop__body-product-infoImage">
                                                     <img width="100%" class="shop__body-product-info-img"
                                                         src="${o.img}"
                                                         alt="">
@@ -184,16 +186,17 @@
                                                         src="${o.img}"
                                                         alt="">
                                                 </a>
-                                                <h4><a href="">${o.name}</a></h4>
+                                                <h4><a href="#">${o.name}</a></h4>
+                                                 <span style="">Đã bán ${o.sell} sản phẩm</span>
                                                 <p>$${o.price}</p>
-                                                <ul class="shop__body-product-info-click">
+                                                <!-- <ul class="shop__body-product-info-click">
                                                     <li><a title="Add to cart" href=""><i
                                                                 class="ti-shopping-cart"></i></a>
                                                     </li>
                                                     <li><a title="View product" href=""><i class="ti-eye"></i></a></li>
                                                     <li><a title="Add to wishlist" href=""><i class="ti-heart"></i></a>
                                                     </li>
-                                                </ul>
+                                                </ul> -->
                                             </div>
                                         </div>
 										</c:forEach>
@@ -244,7 +247,7 @@
                 	<c:forEach items="${listHot}" var="o">
                     <div class="col pc-3 t-4 m-6">
                         <div class="shop__body-product-info">
-                            <a href="" class="shop__body-product-infoImage">
+                            <a href="detail?pid=${o.id}" class="shop__body-product-infoImage">
                                 <img width="100%" class="shop__body-product-info-img"
                                     src="${o.img}"
                                     alt="">
@@ -253,13 +256,14 @@
                                     alt="">
                             </a>
 
-                            <h4><a href="">${o.name}</a></h4>
+                            <h4><a href="#">${o.name}</a></h4>
+                             <span style="">Đã bán ${o.sell} sản phẩm</span>
                             <p>$${o.price}</p>
-                            <ul class="shop__body-product-info-click">
+                            <!-- <ul class="shop__body-product-info-click">
                                 <li><a title="Add to cart" href=""><i class="ti-shopping-cart"></i></a></li>
                                 <li><a title="View product" href=""><i class="ti-eye"></i></a></li>
                                 <li><a title="Add to wishlist" href=""><i class="ti-heart"></i></a></li>
-                            </ul>
+                            </ul> -->
                         </div>
                     </div>
                     </c:forEach>
@@ -319,7 +323,7 @@
                 	<c:forEach items="${listDiscount}" var="c">
                     <div class="col pc-3 t-4 m-6">
                         <div class="shop__body-product-info">
-                            <a href="" class="shop__body-product-infoImage">
+                            <a href="detail?pid=${c.id}" class="shop__body-product-infoImage">
                                 <img width="100%" class="shop__body-product-info-img"
                                     src="${c.img}"
                                     alt="">
@@ -328,13 +332,14 @@
                                     alt="">
                             </a>
 
-                            <h4><a href="">${c.name}</a></h4>
+                            <h4><a href="#">${c.name}</a></h4>
+                             <span style="">Đã bán ${c.sell} sản phẩm</span>
                             <p>$${c.price}</p>
-                            <ul class="shop__body-product-info-click">
+                            <!-- <ul class="shop__body-product-info-click">
                                 <li><a title="Add to cart" href=""><i class="ti-shopping-cart"></i></a></li>
                                 <li><a title="View product" href=""><i class="ti-eye"></i></a></li>
                                 <li><a title="Add to wishlist" href=""><i class="ti-heart"></i></a></li>
-                            </ul>
+                            </ul> -->
                         </div>
                     </div>
 					</c:forEach>

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/loginn.css">
   	  <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/themify-icons/themify-icons.css">
-     <link rel="stylesheet" href="css/footerr.css">
+     <link rel="stylesheet" href="css/footer.css">
      <link rel="stylesheet" href="css/shop.css">
 </head>
 <body>

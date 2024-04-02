@@ -1,4 +1,4 @@
-package Controller;
+	package Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -44,6 +44,8 @@ public class LoginController extends HttpServlet {
 		
 		String btnRgt = request.getParameter("btn");
 		response.setContentType("text/html;charset=UTF-8");
+		
+		// lay thong tin p
 		try (PrintWriter out = response.getWriter()) {
 //			if("Đăng nhập".equals(btnRgt)) {
 				if(!uname.equals("") && !pass.equals("")) {
@@ -55,9 +57,22 @@ public class LoginController extends HttpServlet {
 						session.setAttribute("acc", a);
 						
 						if(a.getIs_admin()==1) {
-							request.getRequestDispatcher("Admin.jsp").forward(request, response);
+							if(session.getAttribute("curPage")!= null) {
+								String crPage =(String) session.getAttribute("curPage");
+								session.removeAttribute("curPage");
+								response.sendRedirect(crPage);
+							}else {
+								response.sendRedirect("admin");;
+							}
 						}else {
-							request.getRequestDispatcher("home").forward(request, response);	
+							if(session.getAttribute("curPage")!= null) {
+								String crPage =(String) session.getAttribute("curPage");
+								session.removeAttribute("curPage");
+								response.sendRedirect(crPage);
+							}else {
+								request.getRequestDispatcher("home").forward(request, response);
+							}
+							
 						}
 					}else {
 						request.setAttribute("mes", "<div class='mes' style='width: 56.58%; height: 50px; background-color: rgb(250, 231, 207); line-height: 50px; margin-left: 65px;font-size: 12px;\r\n"

@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/shop.css">
     <link rel="stylesheet" href="css/header.css">
-     <link rel="stylesheet" href="css/footerr.css">
+     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="css/themify-icons/themify-icons.css">
     <title>Change password</title>

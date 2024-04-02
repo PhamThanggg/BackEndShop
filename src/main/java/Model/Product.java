@@ -1,12 +1,16 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Product {
 	String name, img, color, size, des;
 	int status, quantity, sell, cateId, userId, id;
 	float price;
 	Date createDate;
+	String nameUser;
+	String nameCate;
 	
 	public Product(String name, String img, String color, int status, int quantity, int sell, int cateId, int userId,
 			float price, Date createDate, String size, String des, int id) {
@@ -134,6 +138,49 @@ public class Product {
 	public void setDes(String des) {
 		this.des = des;
 	}
+	
+	
+	public String[] listSize(){
+		String []size = getSize().split(", ");
+		
+		return size;
+		
+	}
+	
+	
+
+	public String getNameUser() {
+		return nameUser;
+	}
+
+	public void setNameUser(String nameUser) {
+		this.nameUser = nameUser;
+	}
+	
+	
+	public String getNameCate() {
+		return nameCate;
+	}
+
+	public void setNameCate(String nameCate) {
+		this.nameCate = nameCate;
+	}
+
+	public double Revenue() {
+		return price *( sell * 1.0);
+	}
+
+	@Override
+	public String toString() {
+		return "Product [name=" + name + ", img=" + img + ", color=" + color + ", size=" + size + ", des=" + des
+				+ ", status=" + status + ", quantity=" + quantity + ", sell=" + sell + ", cateId=" + cateId
+				+ ", userId=" + userId + ", id=" + id + ", price=" + price + ", createDate=" + createDate
+				+ ", nameUser=" + nameUser + ", nameCate=" + nameCate + "]";
+	}
+
+	
+	
+	
 	
 	
 }

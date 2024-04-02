@@ -3,6 +3,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix = "c" uri = "http://java.sun.com/jstl/core_rt" %>
 <!DOCTYPE html>
 <html>
 
@@ -14,7 +15,7 @@
 	rel="stylesheet" media="all">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
- <link rel="stylesheet" href="css/footerr.css">
+<link rel="stylesheet" href="css/footer.css">
 <link rel="stylesheet" href="css/grid.css">
 <link rel="stylesheet" href="css/shop.css">
 <link rel="stylesheet" href="css/header.css">
@@ -24,9 +25,10 @@
 
 <body>
 	<div id="shop">
-		
+
 		<jsp:include page="Header.jsp"></jsp:include>
-		
+
+<form action="shop" method="get">
 		<div class="shop__body">
 			<div class="shop__body-slider">
 				<img width="100%"
@@ -101,11 +103,11 @@
 								<div class="shop__body-product-category">
 									<h2 class="shop__body-product-category-title">categories</h2>
 									<ul class="shop__body-product-list-category">
-										<li><a href="">Home</a></li>
-										<li><a href="">Shop</a></li>
-										<li><a href="">Pages</a></li>
-										<li><a href="">Blogs</a></li>
-										<li><a href="">Contact</a></li>
+										<li><a href="home">Home</a></li>
+										<li><a href="shop">Shop</a></li>
+										<li><a href="#">Pages</a></li>
+										<li><a href="#">Blogs</a></li>
+										<li><a href="#">Contact</a></li>
 									</ul>
 								</div>
 							</div>
@@ -116,20 +118,20 @@
 									<h2 class="shop__body-product-category-title">Price</h2>
 									<ul class="shop__body-product-list-category">
 										<li class="shop__body-product-list-category-checkbox"><input
-											type="checkbox" name="" id="">$10 - $20</li>
+											type="radio" name="" id="myCheckbox" value="10-100" >$10 - $100</li>
 										<li class="shop__body-product-list-category-checkbox"><input
-											type="checkbox" name="" id="">$20 - $30</li>
+											type="radio" name="" id="myCheckbox1" value="100-500">$100 - $500</li>
 										<li class="shop__body-product-list-category-checkbox"><input
-											type="checkbox" name="" id="">$30 - $50</li>
+											type="radio" name="" id="myCheckbox2" value="500-1000" >$500 - $1000</li>
 										<li class="shop__body-product-list-category-checkbox"><input
-											type="checkbox" name="" id="">$50 - $100</li>
+											type="radio" name="" id="myCheckbox3" value="1000-10000" >$1000 - $10000</li>
 										<li class="shop__body-product-list-category-checkbox"><input
-											type="checkbox" name="" id="">$100 - $200</li>
+											type="radio" name="" id="myCheckbox4" value="1000" > > $1000</li>
 									</ul>
 								</div>
 							</div>
 						</div>
-						<div class="row">
+						<!-- <div class="row">
 							<div class="col pc-12 t-0 m-0">
 								<div class="shop__body-product-category">
 									<h2 class="shop__body-product-category-title">Size</h2>
@@ -143,7 +145,7 @@
 									</ul>
 								</div>
 							</div>
-						</div>
+						</div> -->
 						<div class="row">
 							<div class="col pc-12 t-0 m-0">
 								<div class="shop__body-product-category">
@@ -177,41 +179,80 @@
 					<div class="col pc-12 t-12 m-12 shop__body-product-box">
 
 						<div class="row">
-							<%
-							Dao dao = new Dao();
-							List<Product> p = dao.getProducts();
-							for(Product item : p){
-								out.print("<div class=\"col pc-3 t-4 m-6\">" + "<div class=\"shop__body-product-info\">"
-										+ "<a href=\"\" class=\"shop__body-product-infoImage\">"
-										+ "<img width=\"100%\" class=\"shop__body-product-info-img\""
-										+ "src=\"https://priazo-store-demo.myshopify.com/cdn/shop/products/13.1.jpg?v=1654220309\"" + "alt=\"\">"
-										+ "<img width=\"100%\"" + "class=\"shop__body-product-info-img shop__body-product-hover-image\""
-										+ "src=\"https://priazo-store-demo.myshopify.com/cdn/shop/products/13.2.jpg?v=1654220309\"" + "alt=\"\">"
-										+ "</a>"
+							<c:forEach items="${listP}" var="o">
+								<div class="col pc-3 t-4 m-6">
+									<div class="shop__body-product-info">
+										<a href="detail?pid=${o.id}"
+											class="shop__body-product-infoImage"> <img width="100%"
+											class="shop__body-product-info-img" src="${o.img}" alt="">
+											<img width="100%"
+											class="shop__body-product-info-img shop__body-product-hover-image"
+											src="${o.img}" alt="">
+										</a>
 
-										+ "<h4><a href=\"\">Backpack Handbag</a></h4>" + "<p>"+item.getPrice()+"</p>"
-										+ "<ul class=\"shop__body-product-info-click\">"
-										+ "<li><a title=\"Add to cart\" href=\"\"><i class=\"ti-shopping-cart\"></i></a></li>"
-										+ "<form action\"\"><li><a title=\"View product\" href=\"\"><i class=\"ti-eye\"></i></a></li></form>"
-										+ "<li><a title=\"Add to wishlist\" href=\"\"><i class=\"ti-heart\"></i></a></li>" + "</ul>" + "</div>"
-										+ "</div>");
-							}							
-							%>
+										<h4>
+											<a href="#">${o.name}</a>
+										</h4>
+										<span style="">Đã bán ${o.sell} sản phẩm</span>
+										<p>$${o.price}</p>
+										<!-- <ul class="shop__body-product-info-click">
+                                                    <li><a title="Add to cart" href=""><i
+                                                                class="ti-shopping-cart"></i></a>
+                                                    </li>
+                                                    <li><a title="View product" href=""><i class="ti-eye"></i></a></li>
+                                                    <li><a title="Add to wishlist" href=""><i class="ti-heart"></i></a>
+                                                    </li>
+                                                </ul> -->
+									</div>
+								</div>
+							</c:forEach>
 						</div>
+						
+						
 
 						<!--  -->
-						<div
-							class="row shop__body-product-padding shop__body-product-page">
-							<a class="shop__body-product-page-link" href="">1</a> <a
-								class="shop__body-product-page-link" href="">2</a> <a
-								class="shop__body-product-page-link" href=""><i
+							
+						<div class="row shop__body-product-padding shop__body-product-page">	
+							<a class="shop__body-product-page-link ${index==1?"disabled-btn":""} " href=""><i
+								class="ti-angle-left"></i></a>
+							<c:forEach begin="1" end="${soPage}" var="i">
+								<a class="shop__body-product-page-link ${index==i?"active1":""} " href="shop?index=${i}">${i}</a>
+							</c:forEach>
+								<a class="shop__body-product-page-link ${soPage==index?"disabled-btn":""} " href=""><i
 								class="ti-angle-right"></i></a>
 						</div>
 					</div>
 				</div>
 			</div>
-
+</form>
 			<jsp:include page="footer.jsp"></jsp:include>
 </body>
 <script src="js/main.js"></script>
+<script type="text/javascript">
+
+//Lấy tất cả các nút radio trong nhóm
+var radioButtons = document.querySelectorAll('input[type="radio"]');
+console.log(radioButtons);
+// Thêm sự kiện "change" để lắng nghe khi nút radio thay đổi trạng thái
+radioButtons.forEach(function(button) {
+    button.addEventListener('change', function() {
+        // Nếu nút radio hiện tại được chọn, hãy loại bỏ tích của tất cả các nút radio khác trong nhóm
+        if (this.checked) {
+            radioButtons.forEach(function(btn) {
+                if (btn !== button) {
+                    btn.checked = false;
+                }
+            });
+            console.log(this);
+    	    var checkboxValue = this.value;
+    	    console.log(checkboxValue);
+    	    window.location.href = "shop?price=" + checkboxValue;
+        }
+        
+    });
+});
+	
+	
+	
+</script>
 </html>

@@ -5,12 +5,16 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 import DB.DBConnection;
 import Model.Account;
+import Model.Cart;
 import Model.Product;
 
 public class Dao {
@@ -70,7 +74,7 @@ public class Dao {
 
 			while (rs.next()) {
 				return new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
-						rs.getInt(6), rs.getInt(7));
+						rs.getString(6), rs.getInt(7), rs.getInt(8));
 			}
 
 		} catch (Exception e) {
@@ -92,8 +96,9 @@ public class Dao {
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
+				Account acc = new Account();
 				return new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
-						rs.getInt(6), rs.getInt(7));
+						rs.getString(6), rs.getInt(7), rs.getInt(8));
 			}
 
 		} catch (Exception e) {
@@ -224,7 +229,7 @@ public class Dao {
 		return list;
 	}
 
-	// lấy sản phẩm
+	// lấy tai ca sản phẩm
 	public List<Product> getProducts() {
 		List<Product> p = new ArrayList<>();
 		String sql = "SELECT * FROM products";
@@ -259,15 +264,19 @@ public class Dao {
 	}
 
 	// lấy 1 sản phẩm
-	public Product getProduct(int id) {
+	public Product getProduct(String id) {
 		Product p = new Product();
-		String sql = "SELECT * FROM products WHERE id = '" + id + "'";
+		String sql = "SELECT * FROM products \r\n"
+				+ "join category on products.cate_id = category.cate_id\r\n"
+				+ "join users on products.user_id = users.user_id\r\n"
+				+ "where product_id = ?";
 		try {
 			conn = new DBConnection().CreateConnection();
 			ps = conn.prepareStatement(sql);
+			ps.setString(1, id);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				p.setId(rs.getInt("id"));
+				p.setId(rs.getInt("product_id"));
 				p.setName(rs.getString("name"));
 				p.setStatus(rs.getInt("status"));
 				p.setPrice(rs.getFloat("price"));
@@ -280,13 +289,16 @@ public class Dao {
 				p.setUserId(rs.getInt("user_id"));
 				p.setCreateDate(rs.getDate("create_date"));
 				p.setSize(rs.getString("size"));
+				p.setNameCate(rs.getString("category.name"));
+				p.setNameUser(rs.getString("user_name"));
 			}
 			ps.close();
+			return p;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return p;
+		return null;
 	}
 
 	// lấy thông tn gmail
@@ -300,7 +312,7 @@ public class Dao {
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				return new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
-						rs.getInt(6), rs.getInt(7));
+						rs.getString(6), rs.getInt(7), rs.getInt(8));
 
 			}
 		} catch (Exception e) {
@@ -363,18 +375,57 @@ public class Dao {
 		}
 
 	}
-
-
-
 	
+	public int getTotalUser() {
+		String query = "select count(*) from users";
+
+		try {
+			conn = new DBConnection().CreateConnection();
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				// vi co 1 kq
+				return rs.getInt(1);
+
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		return 0;
+	}
+	
+	public String getNameUser(int id_user) {
+		String query = "select user_name from users where user_id = ?";
+
+		try {
+			conn = new DBConnection().CreateConnection();
+			ps = conn.prepareStatement(query);
+			ps.setInt(1, id_user);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				// vi co 1 kq
+				return rs.getString(1);
+
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		return null;
+	}
+	
+	
+
 	public static void main(String[] args) {
-		Dao dao = new Dao();
-//			String sl = dao.getEmailAccount("admin");
-//			System.out.println(sl);
-//			List<Product> list = dao.getNewProduct12(0);
-//			for (Product o : list) {
-//				System.out.println(o);
-//			}
+		
+		 Dao dao = new Dao();
+		 //dao.addOrderDetail("Thang Pham", "123456", "Thai Binh", "TB", 5);
+	        
+	     Product pro = dao.getProduct("20");
+	     System.out.println(pro.toString());
+			
 
 	}
+
 }
